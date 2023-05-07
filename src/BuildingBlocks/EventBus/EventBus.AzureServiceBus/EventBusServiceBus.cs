@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace EventBus.AzureServiceBus
 {
-    public abstract class EventBusServiceBus : BaseEventBus
+    public class EventBusServiceBus : BaseEventBus
     {
         private ITopicClient topicClient;
         private ManagementClient managementClient;
