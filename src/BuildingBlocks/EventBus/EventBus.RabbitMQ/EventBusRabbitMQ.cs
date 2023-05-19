@@ -19,7 +19,7 @@ namespace EventBus.RabbitMQ
         RabbitMQPersistenceConnection persistenceConnection;
         private readonly IConnectionFactory connectionFactory;
         private readonly IModel consumerChannel;
-        public EventBusRabbitMQ(IServiceProvider serviceProvider, EventBusConfig eventBusConfig) : base(serviceProvider, eventBusConfig)
+        public EventBusRabbitMQ( EventBusConfig eventBusConfig, IServiceProvider serviceProvider) : base(eventBusConfig, serviceProvider)
         {
             if (eventBusConfig.Connection!=null)
             {

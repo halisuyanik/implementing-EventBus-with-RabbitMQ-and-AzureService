@@ -16,7 +16,7 @@ namespace EventBus.Base.Events
         public readonly IEventBusSubscriptionManager SubsManager;
         public EventBusConfig EventBusConfig { get; set; }
 
-        public BaseEventBus(IServiceProvider serviceProvider, EventBusConfig eventBusConfig)
+        public BaseEventBus(EventBusConfig eventBusConfig, IServiceProvider serviceProvider )
         {
             ServiceProvider = serviceProvider;
             EventBusConfig = eventBusConfig;

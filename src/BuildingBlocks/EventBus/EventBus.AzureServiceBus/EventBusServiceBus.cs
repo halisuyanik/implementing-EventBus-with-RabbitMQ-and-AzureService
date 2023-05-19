@@ -18,7 +18,7 @@ namespace EventBus.AzureServiceBus
         private ManagementClient managementClient;
         private ILogger logger;
 
-        public EventBusServiceBus(IServiceProvider serviceProvider, EventBusConfig eventBusConfig) : base(serviceProvider, eventBusConfig)
+        public EventBusServiceBus(IServiceProvider serviceProvider, EventBusConfig eventBusConfig) : base(eventBusConfig, serviceProvider)
         {
             logger = serviceProvider.GetService(typeof(ILogger<EventBusServiceBus>)) as ILogger<EventBusServiceBus>;
             managementClient = new ManagementClient(eventBusConfig.EventBusConnectionString);
@@ -112,7 +112,7 @@ namespace EventBus.AzureServiceBus
             bool ruleExist;
             try
             {
-                var rule = managementClient.GetRuleAsync(EventBusConfig.DefaultTopicName, eventName, eventName).GetAwaiter().GetResult();
+                var rule = managementClient.GetRuleAsync(EventBusConfig.DefaultTopicName, GetSubName(eventName), eventName).GetAwaiter().GetResult();
                 ruleExist = rule != null;
             }
             catch (MessagingEntityNotFoundException)
